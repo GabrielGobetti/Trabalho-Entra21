@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo de Perguntas - Animais</title>
+  <link rel="stylesheet" href="port.css">
+</head>
+
+<Header>
+  <img src="img/Animais-removebg-preview.png" alt="" width="200px">
+  <br>
+  <a href="Index.html"><button>Voltar para Inicío</button></a>
+</Header>
+
+<body>
+  <div class="container">
+    <h1>Conheça os animais do nosso planeta</h1>
+    <div class="timer" id="timer">Tempo: 30s</div>
+    <div class="question" id="question">Carregando...</div>
+    <button class="answer-btn" id="btn-1" onclick="checkAnswer(1)">Carregando...</button>
+    <button class="answer-btn" id="btn-2" onclick="checkAnswer(2)">Carregando...</button>
+    <button class="answer-btn" id="btn-3" onclick="checkAnswer(3)">Carregando...</button>
+    <button class="answer-btn" id="btn-4" onclick="checkAnswer(4)">Carregando...</button>
+    <div class="result" id="result"></div>
+    <div class="final-score" id="final-score"></div>
+    <button id="restart-btn" onclick="restartGame()" style="display: none;">↻ Reiniciar Jogo</button>
+    
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "Qual desses animais é o maior mamífero terrestre?",
+        options: ["Girafa", "Elefante", "Baleia", "Rato"],
+        correctAnswer: 2
+      },
+      {
+        question: "Qual é o animal mais rápido do mundo?",
+        options: ["Leão", "Guepardo", "Águia", "falcão-peregrino"],
+        correctAnswer: 4
+      },
+      {
+        question: "Quantos corações o polvo tem?",
+        options: ["1", "2", "3", "4"],
+        correctAnswer: 3
+      },
+      {
+        question: "Qual animal é conhecido como o 'rei da selva'?",
+        options: ["Tigre", "Leão", "Elefante", "Zebra"],
+        correctAnswer: 2
+      },
+      {
+        question: "Qual é o maior animal do planeta?",
+        options: ["Baleia Azul", "Elefante", "Tubarão Branco", "Girafa"],
+        correctAnswer: 1
+      },
+      {
+        question: "Quantos dentes tem um tubarão-branco?",
+        options: ["25", "250", "309", "3000"],
+        correctAnswer: 4
+      },
+      {
+        question: "Onde os pinguins vivem?",
+        options: ["Antártida", "África", "Austrália", "Brasil"],
+        correctAnswer: 1
+      },
+      {
+        question: "Qual é o único mamífero que pode voar?",
+        options: ["Abelha", "Arara", "Coruja", "Morcego"],
+        correctAnswer: 4
+      },
+      {
+        question: "Qual é o único grande felino que vive em grupos?",
+        options: ["Lobo", "Girafa","Leão", "Lince"],
+        correctAnswer: 3
+      },
+      {
+        question: "Quais desses animais vivem em águas doces?",
+        options: ["Tubarão","Castor", "Cavalo-marinho", "peixe-palhaço"],
+        correctAnswer: 2
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let timer;
+    let timeLeft = 20;
+
+    function loadQuestion() {
+      const question = questions[currentQuestion];
+      document.getElementById('question').textContent = question.question;
+      document.getElementById('btn-1').textContent = question.options[0];
+      document.getElementById('btn-2').textContent = question.options[1];
+      document.getElementById('btn-3').textContent = question.options[2];
+      document.getElementById('btn-4').textContent = question.options[3];
+      document.getElementById('result').textContent = '';
+      document.getElementById('timer').textContent = `Tempo: ${timeLeft}s`;
+
+      startTimer();
+    }
+
+    function startTimer() {
+      timeLeft = 30;
+      document.getElementById('timer').textContent = `Tempo: ${timeLeft}s`;
+
+      if (timer) clearInterval(timer);
+
+      timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById('timer').textContent = `Tempo: ${timeLeft}s`;
+
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          document.getElementById('result').textContent = 'Tempo esgotado!';
+          setTimeout(nextQuestion, 1000);
+        }
+      }, 1000);
+    }
+
+    function checkAnswer(answer) {
+      const question = questions[currentQuestion];
+      clearInterval(timer);
+
+      if (answer === question.correctAnswer) {
+        score++;
+        document.getElementById('result').textContent = 'Resposta correta!';
+      } else {
+        document.getElementById('result').textContent = 'Resposta errada!';
+      }
+
+      setTimeout(nextQuestion, 1000);
+    }
+
+    function nextQuestion() {
+      currentQuestion++;
+
+      if (currentQuestion < questions.length) {
+        loadQuestion();
+      } else {
+        showFinalScore();
+      }
+    }
+
+    function showFinalScore() {
+      document.getElementById('final-score').textContent = `Você acertou ${score} de ${questions.length} perguntas!`;
+      document.getElementById('result').textContent = '';
+      document.getElementById('timer').textContent = '';
+      document.getElementById('restart-btn').style.display = 'inline-block';
+    }
+
+    function restartGame() {
+      currentQuestion = 0;
+      score = 0;
+      timeLeft = 20;
+      document.getElementById('final-score').textContent = '';
+      document.getElementById('restart-btn').style.display = 'none';
+      loadQuestion();
+    }
+
+    loadQuestion();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olá, Seja Bem Vindo</title>
+  <style>
+   
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    
+    body {
+      display: flex;
+      justify-content: center; 
+      align-items: center;     
+      height: 100vh;
+      background-color: #4279aa; 
+      background-image: url(Img/image-removebg-preview.png);
+      font-family: Arial, sans-serif; 
+      padding: 10px;
+    }
+
+    /* Estilo da caixa principal */
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center; 
+      text-align: center;
+      max-width: 90%; 
+      width: 800px;  
+      height: 700px;  
+      padding: 20px;
+      border: solid 1px rgb(61, 2, 2);
+      box-shadow: 20px 20px 45px rgba(0, 0, 0, 0.3);
+      border-radius: 30px;
+      background-color: #40b689;
+    }
+
+    img {
+      max-width: 100%; 
+      height: auto; 
+    }
+
+    h1 {
+      color: white;
+      font-size: 24px; 
+      margin-top: 10px;
+    }
+
+    h2 {
+      color: white;
+      font-size: 22px;
+      margin: 15px 0;
+    }
+
+    
+    .buttons {
+      display: flex;
+      justify-content: space-between; 
+      width: 100%;
+      margin-top: 30px;
+    }
+
+    .buttons div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 48%; 
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background-color 0.3s ease;
+      margin-top: 10px;
+      width: 180px; 
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    /* Responsividade para dispositivos muito pequenos (celulares muito pequenos) */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 20px; /* Ajusta o tamanho da fonte para telas menores */
+      }
+      h2 {
+        font-size: 18px; /* Ajusta o tamanho da fonte para o título dos botões */
+      }
+      .buttons {
+        flex-direction: column; /* Alinha os botões verticalmente em telas menores */
+        align-items: center; /* Centraliza os botões */
+      }
+      button {
+        width: 100%; /* Botões ocupam 80% da largura em dispositivos pequenos */
+        margin-bottom: 10px; /* Adiciona um espaço entre os botões */
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <img src="img/Personagem-removebg-preview.png" width="350px" alt="Personagem de boas-vindas">
+    <br>
+    <h1>O que vamos aprender hoje?</h1>
+    <br>
+
+    <div class="buttons">
+      <div>
+        <h2>Matemática</h2>
+        <a href="Home.html"><button>Vamos</button></a>
+      </div>
+
+      <div>
+        <h2>Curiosidades sobre animais</h2>
+        <a href="Portugues.html"><button>Vamos</button></a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
